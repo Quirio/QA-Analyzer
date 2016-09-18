@@ -31,7 +31,7 @@
 				    	<div class="header">Ficheros</div>
 				 	</div>
 	  				<div class="content">
-					    {!! Form::open(array('url'=>'fichero/abrir','class'=>'ui form','method'=>'POST', 'files'=>true)) !!}
+					    {!! Form::open(array('url'=>'/fichero/abrir','class'=>'ui form','method'=>'POST', 'files'=>true)) !!}
 							<div class="field">
 								<label>Seleccione el fichero que quiere analizar</label>
 								{!! Form::file('fichero')!!}
