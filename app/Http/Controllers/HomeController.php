@@ -20,13 +20,20 @@ class HomeController extends Controller
     private $maxY;
     private $mediaMaxY;
 
+
     private $rangomaximoY;
 
     private $FWHM;
     private $error;
     private $rangomin;
     private $rangomax;
+
     private $Ycandidatas;
+    private $YcandidatasPreYFPreXF;
+    private $YcandidatasPreYFPostXF;
+    private $YcandidatasPostYFPreXF;
+    private $YcandidatasPostYFPostXF;
+
     private $XcandidatasPreMax;
     private $XcandidatasPostMax;
     private $XMax;
@@ -79,6 +86,33 @@ class HomeController extends Controller
     private function calcularMaxY(){
         $this->maxY = max($this->valoresY);
         //app('debugbar')->info($this->maxY);      
+    }
+
+    private function testY(){
+        $YcandidatasPreYF=[];
+        $YcandidatasPostYF=[];
+
+        foreach ($this->Ycandidatas as $data) {
+            if($this->FWHM > $data)
+                $YcandidatasPreYF[] = $data;
+            else
+                $YcandidatasPostYF[] = $data;
+        }
+
+        foreach ($YcandidatasPreYF as $data) {
+            app('debugbar')->info($this->XMax ."<". $this->valoresX[array_search($data, $this->valoresY)]);
+            if($this->XMax < $this->valoresX[array_search($data, $this->valoresY)])
+                $this->YcandidatasPreYFPreXF[] = $data;
+            else
+                $this->YcandidatasPreYFPostXF[] = $data;
+        }
+
+        foreach ($YcandidatasPostYF as $data) {
+            if($this->XMax < $this->valoresX[array_search($data, $this->valoresY)])
+                $this->YcandidatasPostYFPreXF[] = $data;
+            else
+                $this->YcandidatasPostYFPostXF[] = $data;
+        }
     }
 
     private function calcularMediaMaximoY($nValores){
@@ -180,6 +214,12 @@ class HomeController extends Controller
             $this->rangomax = floatval(Request::input('rangomax'));
             $this->rangomin =  floatval(Request::input('rangomin'));
             $this->rangomaximoY = [1100,1330];
+
+            $this->YcandidatasPreYFPreXF = [];
+            $this->YcandidatasPreYFPostXF = [];
+            $this->YcandidatasPostYFPreXF = [];
+            $this->YcandidatasPostYFPostXF = [];
+
             $content = file_get_contents(Input::file('fichero')->getRealPath());
 
             $this->readFile($content);
@@ -191,12 +231,18 @@ class HomeController extends Controller
             $this->findXMax();
             $this->findXCandidatas();
             $this->mediaXcandidatas();
+            $this->testY();
 
-            app('debugbar')->info($this->FWHM);
-            app('debugbar')->info($this->maxY);
+            //app('debugbar')->info($this->FWHM);
+            /*app('debugbar')->info($this->maxY);
             app('debugbar')->info($this->XMax);
             app('debugbar')->info($this->XcandidatasPreMax); 
-            app('debugbar')->info($this->XcandidatasPostMax);
+           */
+
+            app('debugbar')->info($this->YcandidatasPostYFPostXF);
+             app('debugbar')->info($this->YcandidatasPostYFPreXF);
+              app('debugbar')->info($this->YcandidatasPreYFPostXF);
+               app('debugbar')->info($this->YcandidatasPreYFPreXF);
 
             return View::make('welcome')
                 ->with('tabla', $this->tabla)
@@ -204,7 +250,12 @@ class HomeController extends Controller
                 ->with('XcandidatasPostMax', $this->XcandidatasPostMax)
                 ->with('Xmax',$this->XMax)
                 ->with('xab',$this->XcandidatasPostMax-$this->XcandidatasPreMax)
-                ->with('XDXI',(($this->XcandidatasPostMax-$this->XcandidatasPreMax)/2+$this->XcandidatasPreMax));   
+                ->with('XDXI',(($this->XcandidatasPostMax-$this->XcandidatasPreMax)/2+$this->XcandidatasPreMax))
+                ->with('YcandidatasPostPost',$this->YcandidatasPostYFPostXF)
+                ->with('YcandidatasPostPre',$this->YcandidatasPostYFPreXF)
+                ->with('YcandidatasPrePost',$this->YcandidatasPreYFPostXF)
+                ->with('YcandidatasPrePre',$this->YcandidatasPreYFPreXF)
+                ->with('YF',$this->FWHM);   
         }
     }
 }

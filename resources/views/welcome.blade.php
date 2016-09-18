@@ -41,15 +41,15 @@
 		   							<div class="two fields">
 			      						<div class="field">
 			      							<span>Rango para calcular mínimo</span>	      							
-			        						<input type="text" name="rangomin">
+			        						<input type="text" name="rangomin" value="20">
 			      						</div>
 			      						<div class="field">
 			      							<span>Rango para calcular maximo</span>
-			        						<input type="text" name="rangomax">
+			        						<input type="text" name="rangomax" value="4">
 			      						</div>
 			      						<div class="field">
 			      							<span>Tolerancia para YF</span>
-			        						<input type="text" name="toleranciay">
+			        						<input type="text" name="toleranciay" value="50">
 			      						</div>
 		    						</div>
 		  						</div> 
@@ -98,6 +98,99 @@
 		   							</tr>
 	   						</tbody>
 	   					</table>
+
+	   					<table class="ui very basic collapsing celled table">
+			   						<thead>
+										<tr>
+											<th>YF</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												{{$YF}}
+											</td>
+										</tr>
+			   						</tbody>
+			   					</table>
+
+	   					<div class="ui grid">
+	   						<div class="four wide column">
+			   					<table class="ui very basic collapsing celled table">
+			   						<thead>
+										<tr>
+											<th>YcandididtasArribaIzquierda</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($YcandidatasPostPre as $data)
+										<tr>
+											<td>
+												{{$data}}
+											</td>
+										</tr>
+										@endforeach
+			   						</tbody>
+			   					</table>
+		   					</div>
+		   					<div class="four wide column">
+		   						<table class="ui very basic collapsing celled table">
+			   						<thead>
+										<tr>
+											<th>YcandididtasAbajoIzquierda</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($YcandidatasPrePre as $data)
+										<tr>
+											<td>
+												{{$data}}
+											</td>
+										</tr>
+										@endforeach
+			   						</tbody>
+			   					</table>   						
+		   					</div>
+		   					<div class="four wide column">
+		   						<table class="ui very basic collapsing celled table">
+			   						<thead>
+										<tr>
+											<th>YcandidatasArribaDerecha</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($YcandidatasPostPost as $data)
+										<tr>
+											<td>
+												{{$data}}
+											</td>
+										</tr>
+										@endforeach
+			   						</tbody>
+			   					</table>
+		   					</div>
+		   					<div class="four wide column">
+		   						<table class="ui very basic collapsing celled table">
+			   						<thead>
+										<tr>
+											<th>YcandidatasAbajoDerecha</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach ($YcandidatasPrePost as $data)
+										<tr>
+											<td>
+												{{$data}}
+											</td>
+										</tr>
+										@endforeach
+			   						</tbody>
+			   					</table>
+		   					</div>
+	   					</div>   					
+
+
+									<!--<th>YcandidatasDerecha</th>-->
 					</div>
 				</div>
 			</div>			
