@@ -3,6 +3,12 @@
         Options -MultiViews
     </IfModule>
 
+    <IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
     Options +FollowSymLinks
 
     RewriteEngine On
@@ -17,6 +23,6 @@
     RewriteRule ^ index.php [L]
 
     # Handle Authorization Header
-    #RewriteCond %{HTTP:Authorization} .
-    #RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
