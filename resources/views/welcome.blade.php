@@ -40,13 +40,16 @@
 		    						<label>Parametros</label>
 		   							<div class="two fields">
 			      						<div class="field">
-			        						<input type="text" name="rangomin" placeholder="Introduzca el rango min...">
+			      							<span>Rango para calcular mínimo</span>	      							
+			        						<input type="text" name="rangomin">
 			      						</div>
 			      						<div class="field">
-			        						<input type="text" name="rangomax" placeholder="Introduzca el rango max...">
+			      							<span>Rango para calcular maximo</span>
+			        						<input type="text" name="rangomax">
 			      						</div>
 			      						<div class="field">
-			        						<input type="text" name="toleranciay" placeholder="Introduzca la tolerancia en Y...">
+			      							<span>Tolerancia para YF</span>
+			        						<input type="text" name="toleranciay">
 			      						</div>
 		    						</div>
 		  						</div> 
@@ -65,30 +68,31 @@
 						<table class="ui very basic collapsing celled table">
 								 	<thead>
 									    <tr>
-									    	<th>X/Ymax</th>
-									    	<th>XFizq</th>
-									    	<th>XDerch</th>
-									    	<th>XD-XI</th>
-									    	<th>((XD-XI)+XI)/2</th>
+									    	<th>Xmax</th>
+									    	<th>XFWHMizq</th>
+									    	<th>XFWHMDer</th>
+									    	<th>FWHM</th>
+									    	<th>XcentroFWHM</th>
 									  	</tr>
 								  	</thead>
 								  	<tbody>
 									<tr>
 									@if(isset($XcandidatasPreMax) && isset($XcandidatasPostMax) && isset($Xmax) && isset($xab) && isset($XDXI))
 									   	<td>
-										    {{$XcandidatasPreMax}}
+									   		{{$Xmax}}
+										    
 									   	</td>
 									    <td>
-									    	{{--$XcandidatasPostMax--}}
+									    	{{$XcandidatasPreMax}}
 									    </td>
 									    <td>
-									    	{{--$Xmax--}}
+									    	{{$XcandidatasPostMax}}									    	
 									    </td>
 									    <td>
-									    	{{--$xab--}}
+									    	{{$xab}}
 									    </td>
 									    <td>
-									    	{{--$XDXI--}}
+									    	{{$XDXI}}
 									    </td>
 									@endif
 		   							</tr>

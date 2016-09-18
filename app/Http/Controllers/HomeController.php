@@ -18,7 +18,9 @@ class HomeController extends Controller
     private $valoresY;
     private $mediaY;
     private $maxY;
-    private $mediaMaxY;   
+    private $mediaMaxY;
+
+    private $rangomaximoY;
 
     private $FWHM;
     private $error;
@@ -177,6 +179,7 @@ class HomeController extends Controller
             $this->error = floatval(Request::input('toleranciay'));
             $this->rangomax = floatval(Request::input('rangomax'));
             $this->rangomin =  floatval(Request::input('rangomin'));
+            $this->rangomaximoY = [1100,1330];
             $content = file_get_contents(Input::file('fichero')->getRealPath());
 
             $this->readFile($content);
@@ -201,7 +204,7 @@ class HomeController extends Controller
                 ->with('XcandidatasPostMax', $this->XcandidatasPostMax)
                 ->with('Xmax',$this->XMax)
                 ->with('xab',$this->XcandidatasPostMax-$this->XcandidatasPreMax)
-                ->with('XDXI',(($this->XcandidatasPostMax-$this->XcandidatasPreMax)+$XcandidatasPreMax)/2);   
+                ->with('XDXI',(($this->XcandidatasPostMax-$this->XcandidatasPreMax)/2+$this->XcandidatasPreMax));   
         }
     }
 }
