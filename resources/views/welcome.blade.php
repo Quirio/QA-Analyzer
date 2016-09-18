@@ -99,6 +99,7 @@
 	   						</tbody>
 	   					</table>
 
+	   					@if(isset($YF))
 	   					<table class="ui very basic collapsing celled table">
 			   						<thead>
 										<tr>
@@ -113,6 +114,7 @@
 										</tr>
 			   						</tbody>
 			   					</table>
+			   			@endif
 
 			   			@if(isset($YcandidatasPostPre) && isset($YcandidatasPrePre) && isset($YcandidatasPostPost) && isset($YcandidatasPrePost))
 	   					<div class="ui grid">
