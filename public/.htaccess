@@ -4,9 +4,9 @@
     </IfModule>
 
     RewriteEngine On
-
-     RewriteBase /QD-Analyzer/
-
+    
+    Redirect 404 /fichero/abrir https://google.com
+    
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
