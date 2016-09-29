@@ -5,7 +5,7 @@
 
     RewriteEngine On
 
-     RewriteBase /QD-Analyzer/
+     RewriteBase /qaanalyzerr/
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
