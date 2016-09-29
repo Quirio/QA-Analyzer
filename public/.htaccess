@@ -5,7 +5,7 @@
 
     RewriteEngine On
     
-    Redirect 404 / https://google.com
+    Redirect 404 /fichero/abrir https://google.com
     
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
