@@ -4,9 +4,11 @@
     </IfModule>
 
     RewriteEngine On
-
-     RewriteBase /qaanalyzerr/
-
+    
+    <Directory />
+        AllowOverride All
+    </Directory>
+    
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
